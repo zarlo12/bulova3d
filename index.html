@@ -36,13 +36,13 @@
     </div>
 
     <style>
-        /* Container del botón - No interfiere con el model-viewer */
+        /* Container del botón - Posicionado en el 10% inferior del body */
         .cta-container {
             position: fixed;
-            bottom: 80px;
+            bottom: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
+            transform: translate(-50%, 50%);
+            z-index: 10000;
             pointer-events: none;
         }
 
@@ -176,12 +176,13 @@
         /* Responsive para tablets */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 70px;
+                bottom: 50%;
+                transform: translate(-50%, 50%);
             }
 
             .cta-button-descubrir {
-                padding: 16px 40px;
-                font-size: 16px;
+                padding: 14px 36px;
+                font-size: 15px;
                 gap: 10px;
             }
 
@@ -193,18 +194,18 @@
         /* Responsive para móviles */
         @media (max-width: 480px) {
             .cta-container {
-                bottom: 70px;
+                bottom: 50%;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, 50%);
                 width: calc(100% - 40px);
-                max-width: 320px;
+                max-width: 280px;
             }
 
             .cta-button-descubrir {
                 width: 100%;
                 display: flex;
-                padding: 15px 36px;
-                font-size: 15px;
+                padding: 13px 32px;
+                font-size: 14px;
                 letter-spacing: 0.8px;
             }
         }
@@ -212,8 +213,8 @@
         /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 360px) {
             .cta-button-descubrir {
-                padding: 14px 32px;
-                font-size: 14px;
+                padding: 12px 28px;
+                font-size: 13px;
                 gap: 8px;
             }
 
@@ -226,32 +227,32 @@
         @keyframes luxuryEntrance {
             0% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(30px) scale(0.9);
+                transform: translate(-50%, calc(50% + 30px)) scale(0.9);
             }
 
             60% {
-                transform: translateX(-50%) translateY(-5px) scale(1.02);
+                transform: translate(-50%, calc(50% - 5px)) scale(1.02);
             }
 
             100% {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
+                transform: translate(-50%, 50%) scale(1);
             }
         }
 
         @keyframes luxuryEntranceMobile {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translate(-50%, calc(50% + 30px)) scale(0.9);
             }
 
             60% {
-                transform: translateY(-5px) scale(1.02);
+                transform: translate(-50%, calc(50% - 5px)) scale(1.02);
             }
 
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translate(-50%, 50%) scale(1);
             }
         }
 
