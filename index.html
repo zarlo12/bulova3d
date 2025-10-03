@@ -36,10 +36,10 @@
     </div>
 
     <style>
-        /* SOLUCIÓN DEFINITIVA: Botón flotante arriba del botón AR */
+        /* SOLUCIÓN DEFINITIVA: Botón DEBAJO del botón AR */
         .cta-container {
             position: fixed;
-            bottom: 70px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 999999;
@@ -176,53 +176,55 @@
         /* Responsive para tablets */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 60px;
+                bottom: 8px;
             }
 
             .cta-button-descubrir {
-                padding: 14px 36px;
-                font-size: 15px;
-                gap: 10px;
+                padding: 12px 32px;
+                font-size: 14px;
+                gap: 8px;
             }
 
             .button-arrow {
-                font-size: 18px;
+                font-size: 16px;
             }
         }
 
         /* Responsive para móviles */
         @media (max-width: 480px) {
             .cta-container {
-                bottom: 55px;
+                bottom: 6px;
                 left: 50%;
                 right: auto;
                 transform: translateX(-50%);
-                width: calc(100% - 40px);
-                max-width: 280px;
+                width: calc(100% - 20px);
+                max-width: 260px;
             }
 
             .cta-button-descubrir {
                 width: 100%;
-                padding: 12px 30px;
-                font-size: 14px;
-                letter-spacing: 0.8px;
+                padding: 10px 24px;
+                font-size: 13px;
+                letter-spacing: 0.6px;
             }
         }
 
         /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 360px) {
             .cta-container {
-                bottom: 50px;
+                bottom: 5px;
+                width: calc(100% - 16px);
+                max-width: 240px;
             }
 
             .cta-button-descubrir {
-                padding: 11px 26px;
-                font-size: 13px;
-                gap: 8px;
+                padding: 9px 20px;
+                font-size: 12px;
+                gap: 6px;
             }
 
             .button-arrow {
-                font-size: 16px;
+                font-size: 14px;
             }
         }
 
