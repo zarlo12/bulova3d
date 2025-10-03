@@ -39,10 +39,10 @@
         /* Container del botón - No interfiere con el model-viewer */
         .cta-container {
             position: fixed;
-            bottom: 40px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2000;
+            z-index: 9999;
             pointer-events: none;
         }
 
@@ -173,10 +173,10 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive parsddsa tablets */
+        /* Responsive para tablets */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 30px;
+                bottom: 70px;
             }
 
             .cta-button-descubrir {
@@ -193,16 +193,15 @@
         /* Responsive para móviles */
         @media (max-width: 480px) {
             .cta-container {
-                bottom: 25px;
-                left: 20px;
-                right: 20px;
-                transform: none;
+                bottom: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                max-width: 320px;
             }
 
             .cta-button-descubrir {
                 width: 100%;
-                max-width: 320px;
-                margin: 0 auto;
                 display: flex;
                 padding: 15px 36px;
                 font-size: 15px;
