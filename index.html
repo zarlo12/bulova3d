@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>&lt;model-viewer&gt; template</title>
+    <title>BULOVA</title>
     <meta charset="utf-8">
-    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="description" content="BULOVA">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" href="https://proyectos-xnova360.com/proyectos/BULOVA4/styles.css" rel="stylesheet" />
+    <link type="text/css" href="./styles.css" rel="stylesheet" />
 </head>
 
 <body>
     <!-- <model-viewer> HTML element -->
     <model-viewer src="./Bulova Rubaiyat 150 (Final).glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls
-        tone-mapping="neutral" poster="https://proyectos-xnova360.com/proyectos/BULOVA4/poster.webp"
-        shadow-intensity="1.05" autoplay exposure="1.2" shadow-softness="1">
+        tone-mapping="neutral" poster="./poster.webp" shadow-intensity="1.05" autoplay exposure="1.2"
+        shadow-softness="1">
         <div class="progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
         </div>
@@ -21,15 +21,278 @@
             View in your space
         </button>
         <div id="ar-prompt">
-            <img src="https://proyectos-xnova360.com/proyectos/BULOVA4/ar_hand_prompt.png">
+            <img src="./ar_hand_prompt.png">
         </div>
     </model-viewer>
 
-    <!-- ✅ Agregado: CTA con URL de tracking que solicitó el cliente -->
-    <a href="https://ad.doubleclick.net/ddm/trackimp/N2059970.3478950AMNET-DV360/B34227744.429925745;dc_trk_aid=622953798;dc_trk_cid=241880659;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1?"
-        target="_blank" rel="noopener" class="cta-button">👉 Ver producto</a>
+    <!-- ✅ CTA Button Premium con tracking de DoubleClick -->
+    <div class="cta-container">
+        <a href="https://ad.doubleclick.net/ddm/trackclk/N2059970.3670554NTPMEDIAMX/B34227744.430723328;dc_trk_aid=623932999;dc_trk_cid=242573645;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
+            target="_blank" rel="noopener" class="cta-button-descubrir">
+            <span class="button-text">Descubrir más</span>
+            <span class="button-arrow">→</span>
+            <span class="button-shine"></span>
+        </a>
+    </div>
 
-    <script src="https://proyectos-xnova360.com/proyectos/BULOVA4/script.js"></script>
+    <style>
+        /* Container del botón - No interfiere con el model-viewer */
+        .cta-container {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        /* Botón Premium Bulova - Diseño de lujo */
+        .cta-button-descubrir {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            pointer-events: auto;
+
+            /* Diseño premium */
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 48px;
+            border-radius: 60px;
+
+            /* Tipografía elegante */
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            /* Borde dorado sutil estilo Bulova */
+            border: 2px solid transparent;
+            background-clip: padding-box;
+
+            /* Sombras dramáticas */
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.6),
+                0 2px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+
+            /* Transiciones suaves */
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+            /* Evitar selección */
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+
+            /* Backdrop blur para efecto glassmorphism */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            overflow: hidden;
+        }
+
+        /* Pseudo-elemento para borde dorado animado */
+        .cta-button-descubrir::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 60px;
+            padding: 2px;
+            background: linear-gradient(135deg,
+                    rgba(212, 175, 55, 0.3),
+                    rgba(255, 215, 0, 0.5),
+                    rgba(212, 175, 55, 0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Efecto de brillo que se mueve */
+        .button-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transition: left 0.6s ease;
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .button-arrow {
+            position: relative;
+            z-index: 2;
+            font-size: 20px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Efecto hover para desktop */
+        @media (hover: hover) {
+            .cta-button-descubrir:hover {
+                transform: translateY(-4px) scale(1.02);
+                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+                box-shadow:
+                    0 12px 48px rgba(0, 0, 0, 0.7),
+                    0 4px 16px rgba(212, 175, 55, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            }
+
+            .cta-button-descubrir:hover::before {
+                opacity: 1;
+            }
+
+            .cta-button-descubrir:hover .button-shine {
+                left: 100%;
+            }
+
+            .cta-button-descubrir:hover .button-arrow {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Efecto de click/tap */
+        .cta-button-descubrir:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow:
+                0 4px 24px rgba(0, 0, 0, 0.5),
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive para tablets */
+        @media (max-width: 768px) {
+            .cta-container {
+                bottom: 30px;
+            }
+
+            .cta-button-descubrir {
+                padding: 16px 40px;
+                font-size: 16px;
+                gap: 10px;
+            }
+
+            .button-arrow {
+                font-size: 18px;
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 480px) {
+            .cta-container {
+                bottom: 25px;
+                left: 20px;
+                right: 20px;
+                transform: none;
+            }
+
+            .cta-button-descubrir {
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                display: flex;
+                padding: 15px 36px;
+                font-size: 15px;
+                letter-spacing: 0.8px;
+            }
+        }
+
+        /* Ajuste para pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            .cta-button-descubrir {
+                padding: 14px 32px;
+                font-size: 14px;
+                gap: 8px;
+            }
+
+            .button-arrow {
+                font-size: 16px;
+            }
+        }
+
+        /* Animación de entrada elegante */
+        @keyframes luxuryEntrance {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px) scale(0.9);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px) scale(1.02);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        @keyframes luxuryEntranceMobile {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            60% {
+                transform: translateY(-5px) scale(1.02);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .cta-container {
+            animation: luxuryEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+        }
+
+        @media (max-width: 480px) {
+            .cta-container {
+                animation: luxuryEntranceMobile 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+            }
+        }
+
+        /* Animación de pulso sutil para llamar la atención */
+        @keyframes subtlePulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 8px 32px rgba(0, 0, 0, 0.6),
+                    0 2px 8px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            }
+
+            50% {
+                box-shadow:
+                    0 8px 32px rgba(0, 0, 0, 0.6),
+                    0 2px 8px rgba(212, 175, 55, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .cta-button-descubrir {
+            animation: subtlePulse 3s ease-in-out 2s infinite;
+        }
+    </style>
+
+    <script src="./script.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
