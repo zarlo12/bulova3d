@@ -36,20 +36,13 @@
     </div>
 
     <style>
-        /* IMPORTANTE: El body tiene 100vh, el model-viewer 90vh */
-        /* Esto deja 10vh en la parte inferior para los botones */
-
-        /* Container del botón - En el espacio inferior libre (10vh) */
+        /* SOLUCIÓN DEFINITIVA: Botón flotante arriba del botón AR */
         .cta-container {
             position: fixed;
-            top: 90vh;
-            left: 0;
-            right: 0;
-            height: 10vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999999;
             pointer-events: none;
         }
 
@@ -182,6 +175,10 @@
 
         /* Responsive para tablets */
         @media (max-width: 768px) {
+            .cta-container {
+                bottom: 60px;
+            }
+
             .cta-button-descubrir {
                 padding: 14px 36px;
                 font-size: 15px;
@@ -196,12 +193,16 @@
         /* Responsive para móviles */
         @media (max-width: 480px) {
             .cta-container {
-                padding: 0 20px;
+                bottom: 55px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                max-width: 280px;
             }
 
             .cta-button-descubrir {
                 width: 100%;
-                max-width: 280px;
                 padding: 12px 30px;
                 font-size: 14px;
                 letter-spacing: 0.8px;
@@ -210,6 +211,10 @@
 
         /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 360px) {
+            .cta-container {
+                bottom: 50px;
+            }
+
             .cta-button-descubrir {
                 padding: 11px 26px;
                 font-size: 13px;
@@ -225,16 +230,16 @@
         @keyframes luxuryEntrance {
             0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateX(-50%) translateY(20px);
             }
 
             60% {
-                transform: translateY(-3px);
+                transform: translateX(-50%) translateY(-3px);
             }
 
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(-50%) translateY(0);
             }
         }
 
