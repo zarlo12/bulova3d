@@ -2,6 +2,15 @@
   display: none;
 }
 
+/* EXCEPCIÓN CRÍTICA: Mostrar siempre el botón descubrir más */
+#descubrir-mas-btn,
+#descubrir-mas-btn *,
+model-viewer #descubrir-mas-btn,
+model-viewer #descubrir-mas-btn * {
+  display: block !important;
+  visibility: visible !important;
+}
+
 html {
   height: 100%;
 }
