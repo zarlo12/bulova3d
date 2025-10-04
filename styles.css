@@ -59,6 +59,83 @@ model-viewer {
   background-color: #ffffff;
 }
 
+/* AJUSTE CRÍTICO PARA iOS - REDUCIR ALTURA PARA DAR ESPACIO AL BOTÓN */
+@supports (-webkit-touch-callout: none) {
+  model-viewer {
+    height: 75% !important;
+    max-height: 75vh !important;
+  }
+}
+
+@media (max-width: 768px) {
+  model-viewer {
+    height: 70% !important;
+    max-height: 70vh !important;
+  }
+}
+
+/* ESTILOS PARA EL BOTÓN DENTRO DEL SLOT DEL MODEL-VIEWER */
+.cta-container-slot {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  -webkit-transform: translateX(-50%) !important;
+  z-index: 999999 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.cta-button-descubrir-slot {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  pointer-events: auto !important;
+
+  /* Diseño premium */
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #1a1a1a 50%,
+    #0a0a0a 100%
+  ) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 18px 48px !important;
+  border-radius: 60px !important;
+
+  /* Tipografía elegante */
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+
+  /* Sombras dramáticas */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+
+  /* Evitar selección */
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
+  /* Optimización iOS */
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 999999 !important;
+}
+
 .progress-bar {
   display: block;
   width: 33%;
@@ -186,9 +263,23 @@ model-viewer > #ar-prompt > img {
   .cta-button-descubrir {
     display: inline-flex !important;
   }
-}
 
-/* REGLAS ESPECÍFICAS PARA IPHONE */
+  /* BOTÓN SLOT PARA MÓVILES */
+  .cta-container-slot {
+    bottom: 15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 320px !important;
+  }
+
+  .cta-button-descubrir-slot {
+    width: 100% !important;
+    padding: 16px 40px !important;
+    font-size: 16px !important;
+    gap: 10px !important;
+  }
+} /* REGLAS ESPECÍFICAS PARA IPHONE */
 @media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
   .cta-container {
     position: fixed !important;

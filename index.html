@@ -17,15 +17,29 @@
     <model-viewer src="./Bulova Rubaiyat 150 (Final).glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls
         tone-mapping="neutral" poster="./poster.webp" shadow-intensity="1.05" autoplay exposure="1.2"
         shadow-softness="1">
+
         <div class="progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
         </div>
+
         <button slot="ar-button" id="ar-button">
             View in your space33
         </button>
+
         <div id="ar-prompt">
             <img src="./ar_hand_prompt.png">
         </div>
+
+        <!-- ✅ BOTÓN CTA DENTRO DEL MODEL-VIEWER COMO SLOT -->
+        <div slot="hotspot-cta" class="cta-container-slot" id="cta-descubrir-slot">
+            <a href="https://ad.doubleclick.net/ddm/trackclk/N2059970.3670554NTPMEDIAMX/B34227744.430723328;dc_trk_aid=623932999;dc_trk_cid=242573645;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
+                target="_blank" rel="noopener" class="cta-button-descubrir-slot" id="descubrir-mas-btn-slot">
+                <span class="button-text">Descubrir más</span>
+                <span class="button-arrow">→</span>
+                <span class="button-shine"></span>
+            </a>
+        </div>
+
     </model-viewer>
 
     <!-- ✅ CTA Button Premium con tracking de DoubleClick -->
@@ -196,53 +210,25 @@
 
         /* Responsive para móviles */
         @media (max-width: 480px) {
-            .cta-container {
-                bottom: 25px;
-                left: 20px;
-                right: 20px;
-                transform: none;
-                position: fixed !important;
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                z-index: 999999 !important;
-            }
 
-            .cta-button-descubrir {
-                width: 100%;
-                max-width: 320px;
-                margin: 0 auto;
-                display: flex !important;
-                padding: 15px 36px;
-                font-size: 15px;
-                letter-spacing: 0.8px;
-                visibility: visible !important;
-                opacity: 1 !important;
-                pointer-events: auto !important;
+            /* OCULTAR BOTÓN EXTERNO EN MÓVILES - USAR SOLO EL DEL SLOT */
+            .cta-container {
+                display: none !important;
             }
         }
 
         /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 360px) {
-            .cta-button-descubrir {
-                padding: 14px 32px;
-                font-size: 14px;
-                gap: 8px;
-                display: inline-flex !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-            }
 
-            .button-arrow {
-                font-size: 16px;
-            }
-
+            /* USAR SOLO BOTÓN DEL SLOT EN PANTALLAS PEQUEÑAS */
             .cta-container {
-                position: fixed !important;
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                z-index: 999999 !important;
+                display: none !important;
+            }
+
+            .cta-button-descubrir-slot {
+                padding: 14px 32px !important;
+                font-size: 14px !important;
+                gap: 8px !important;
             }
         }
 
@@ -328,7 +314,10 @@
         function forceButtonVisibility() {
             const ctaContainer = document.getElementById('cta-descubrir');
             const ctaButton = document.getElementById('descubrir-mas-btn');
+            const ctaContainerSlot = document.getElementById('cta-descubrir-slot');
+            const ctaButtonSlot = document.getElementById('descubrir-mas-btn-slot');
 
+            // Botón original fuera del model-viewer
             if (ctaContainer) {
                 ctaContainer.style.cssText = `
                     position: fixed !important;
@@ -359,7 +348,49 @@
                 `;
             }
 
-            console.log('✅ Botón CTA forzado a ser visible - iOS:', isIOS());
+            // Botón dentro del model-viewer slot (PRIORITARIO PARA iOS)
+            if (ctaContainerSlot) {
+                ctaContainerSlot.style.cssText = `
+                    position: absolute !important;
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    z-index: 999999 !important;
+                    bottom: 10px !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) translateZ(0) !important;
+                    -webkit-transform: translateX(-50%) translateZ(0) !important;
+                    pointer-events: none !important;
+                    width: auto !important;
+                    height: auto !important;
+                `;
+            }
+
+            if (ctaButtonSlot) {
+                ctaButtonSlot.style.cssText = `
+                    display: inline-flex !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    pointer-events: auto !important;
+                    position: relative !important;
+                    z-index: 999999 !important;
+                    -webkit-transform: translateZ(0) !important;
+                    transform: translateZ(0) !important;
+                    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%) !important;
+                    color: #ffffff !important;
+                    text-decoration: none !important;
+                    padding: 18px 48px !important;
+                    border-radius: 60px !important;
+                    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                    font-size: 17px !important;
+                    font-weight: 500 !important;
+                    letter-spacing: 1px !important;
+                    text-transform: uppercase !important;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+                `;
+            }
+
+            console.log('✅ Botón CTA forzado a ser visible - iOS:', isIOS(), '- Slot encontrado:', !!ctaButtonSlot);
         }
 
         // Forzar visibilidad inmediatamente
