@@ -1,5 +1,5 @@
 /* Regla más específica para evitar conflictos con elementos externos */
-model-viewer:not(:defined) > * {
+model-viewer:not(:defined) > *:not(.cta-container):not(.cta-button-descubrir) {
   display: none;
 }
 
@@ -8,6 +8,8 @@ model-viewer:not(:defined) > * {
 .cta-container *,
 .cta-button-descubrir,
 .cta-button-descubrir *,
+#cta-descubrir,
+#cta-descubrir *,
 #descubrir-mas-btn,
 #descubrir-mas-btn *,
 model-viewer #descubrir-mas-btn,
@@ -15,6 +17,29 @@ model-viewer #descubrir-mas-btn * {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* REGLAS ESPECÍFICAS PARA iOS SAFARI */
+@supports (-webkit-touch-callout: none) {
+  .cta-container {
+    position: fixed !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+  }
+
+  .cta-button-descubrir {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
 }
 
 html {
@@ -147,16 +172,47 @@ model-viewer > #ar-prompt > img {
   pointer-events: auto !important;
 }
 
-/* Específico para móviles */
+/* Específico para móviles y iOS */
 @media (max-width: 768px) {
   .cta-container,
   .cta-button-descubrir {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
   }
 
   .cta-button-descubrir {
     display: inline-flex !important;
+  }
+}
+
+/* REGLAS ESPECÍFICAS PARA IPHONE */
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+  .cta-container {
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateZ(0) !important;
+    -webkit-transform: translateX(-50%) translateZ(0) !important;
+    z-index: 999999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    pointer-events: none !important;
+  }
+
+  .cta-button-descubrir {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 999999 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
   }
 }

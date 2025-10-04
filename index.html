@@ -5,7 +5,10 @@
     <title>BULOVA</title>
     <meta charset="utf-8">
     <meta name="description" content="BULOVA">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link type="text/css" href="./styles.css" rel="stylesheet" />
 </head>
 
@@ -108,6 +111,7 @@
                     rgba(212, 175, 55, 0.3));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -197,16 +201,24 @@
                 left: 20px;
                 right: 20px;
                 transform: none;
+                position: fixed !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                z-index: 999999 !important;
             }
 
             .cta-button-descubrir {
                 width: 100%;
                 max-width: 320px;
                 margin: 0 auto;
-                display: flex;
+                display: flex !important;
                 padding: 15px 36px;
                 font-size: 15px;
                 letter-spacing: 0.8px;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
             }
         }
 
@@ -216,10 +228,21 @@
                 padding: 14px 32px;
                 font-size: 14px;
                 gap: 8px;
+                display: inline-flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
 
             .button-arrow {
                 font-size: 16px;
+            }
+
+            .cta-container {
+                position: fixed !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                z-index: 999999 !important;
             }
         }
 
@@ -296,42 +319,74 @@
 
     <!-- Script adicional para asegurar visibilidad del botón CTA -->
     <script>
-        // Forzar visibilidad del botón CTA
-        document.addEventListener('DOMContentLoaded', function () {
+        // Detectar iOS
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        // Función para forzar visibilidad del botón
+        function forceButtonVisibility() {
             const ctaContainer = document.getElementById('cta-descubrir');
             const ctaButton = document.getElementById('descubrir-mas-btn');
 
-            // Forzar estilos de visibilidad
             if (ctaContainer) {
-                ctaContainer.style.display = 'block';
-                ctaContainer.style.visibility = 'visible';
-                ctaContainer.style.opacity = '1';
-                ctaContainer.style.zIndex = '99999';
+                ctaContainer.style.cssText = `
+                    position: fixed !important;
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    z-index: 999999 !important;
+                    bottom: 30px !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) translateZ(0) !important;
+                    -webkit-transform: translateX(-50%) translateZ(0) !important;
+                    pointer-events: none !important;
+                    width: auto !important;
+                    height: auto !important;
+                `;
             }
 
             if (ctaButton) {
-                ctaButton.style.display = 'inline-flex';
-                ctaButton.style.visibility = 'visible';
-                ctaButton.style.opacity = '1';
-                ctaButton.style.pointerEvents = 'auto';
+                ctaButton.style.cssText = `
+                    display: inline-flex !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    pointer-events: auto !important;
+                    position: relative !important;
+                    z-index: 999999 !important;
+                    -webkit-transform: translateZ(0) !important;
+                    transform: translateZ(0) !important;
+                `;
             }
 
-            console.log('✅ Botón CTA forzado a ser visible');
-        });
+            console.log('✅ Botón CTA forzado a ser visible - iOS:', isIOS());
+        }
 
-        // Verificación adicional después de que model-viewer se cargue
+        // Forzar visibilidad inmediatamente
+        forceButtonVisibility();
+
+        // Forzar visibilidad cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', forceButtonVisibility);
+
+        // Verificación adicional después de que todo se cargue
         window.addEventListener('load', function () {
-            setTimeout(function () {
-                const ctaContainer = document.getElementById('cta-descubrir');
-                const ctaButton = document.getElementById('descubrir-mas-btn');
-
-                if (ctaContainer && ctaButton) {
-                    ctaContainer.style.display = 'block';
-                    ctaButton.style.display = 'inline-flex';
-                    console.log('✅ Verificación post-carga completada');
-                }
-            }, 1000);
+            setTimeout(forceButtonVisibility, 100);
+            setTimeout(forceButtonVisibility, 500);
+            setTimeout(forceButtonVisibility, 1000);
+            setTimeout(forceButtonVisibility, 2000);
         });
+
+        // Para iOS, verificación adicional cada 2 segundos durante los primeros 10 segundos
+        if (isIOS()) {
+            let checks = 0;
+            const iosInterval = setInterval(function () {
+                forceButtonVisibility();
+                checks++;
+                if (checks >= 5) { // 5 checks = 10 segundos
+                    clearInterval(iosInterval);
+                }
+            }, 2000);
+        }
     </script>
 
     <!-- Loads <model-viewer> for browsers: -->
