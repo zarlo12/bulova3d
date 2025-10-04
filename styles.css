@@ -1,14 +1,20 @@
-:not(:defined) > * {
+/* Regla más específica para evitar conflictos con elementos externos */
+model-viewer:not(:defined) > * {
   display: none;
 }
 
-/* EXCEPCIÓN CRÍTICA: Mostrar siempre el botón descubrir más */
+/* EXCEPCIÓN CRÍTICA: Mostrar siempre el botón CTA y elementos relacionados */
+.cta-container,
+.cta-container *,
+.cta-button-descubrir,
+.cta-button-descubrir *,
 #descubrir-mas-btn,
 #descubrir-mas-btn *,
 model-viewer #descubrir-mas-btn,
 model-viewer #descubrir-mas-btn * {
   display: block !important;
   visibility: visible !important;
+  opacity: 1 !important;
 }
 
 html {
@@ -123,4 +129,34 @@ model-viewer[ar-status="session-started"] > #ar-prompt {
 
 model-viewer > #ar-prompt > img {
   animation: circle 4s linear infinite;
+}
+
+/* 🚨 REGLAS DE SEGURIDAD ADICIONALES PARA MÓVILES */
+/* Asegurar que el CTA sea siempre visible */
+.cta-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 99999 !important;
+}
+
+.cta-button-descubrir {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Específico para móviles */
+@media (max-width: 768px) {
+  .cta-container,
+  .cta-button-descubrir {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .cta-button-descubrir {
+    display: inline-flex !important;
+  }
 }

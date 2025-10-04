@@ -26,9 +26,9 @@
     </model-viewer>
 
     <!-- ✅ CTA Button Premium con tracking de DoubleClick -->
-    <div class="cta-container">
+    <div class="cta-container" id="cta-descubrir">
         <a href="https://ad.doubleclick.net/ddm/trackclk/N2059970.3670554NTPMEDIAMX/B34227744.430723328;dc_trk_aid=623932999;dc_trk_cid=242573645;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
-            target="_blank" rel="noopener" class="cta-button-descubrir">
+            target="_blank" rel="noopener" class="cta-button-descubrir" id="descubrir-mas-btn">
             <span class="button-text">Descubrir más</span>
             <span class="button-arrow">→</span>
             <span class="button-shine"></span>
@@ -293,6 +293,47 @@
     </style>
 
     <script src="./script.js"></script>
+
+    <!-- Script adicional para asegurar visibilidad del botón CTA -->
+    <script>
+        // Forzar visibilidad del botón CTA
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctaContainer = document.getElementById('cta-descubrir');
+            const ctaButton = document.getElementById('descubrir-mas-btn');
+
+            // Forzar estilos de visibilidad
+            if (ctaContainer) {
+                ctaContainer.style.display = 'block';
+                ctaContainer.style.visibility = 'visible';
+                ctaContainer.style.opacity = '1';
+                ctaContainer.style.zIndex = '99999';
+            }
+
+            if (ctaButton) {
+                ctaButton.style.display = 'inline-flex';
+                ctaButton.style.visibility = 'visible';
+                ctaButton.style.opacity = '1';
+                ctaButton.style.pointerEvents = 'auto';
+            }
+
+            console.log('✅ Botón CTA forzado a ser visible');
+        });
+
+        // Verificación adicional después de que model-viewer se cargue
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const ctaContainer = document.getElementById('cta-descubrir');
+                const ctaButton = document.getElementById('descubrir-mas-btn');
+
+                if (ctaContainer && ctaButton) {
+                    ctaContainer.style.display = 'block';
+                    ctaButton.style.display = 'inline-flex';
+                    console.log('✅ Verificación post-carga completada');
+                }
+            }, 1000);
+        });
+    </script>
+
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
