@@ -5,10 +5,7 @@
     <title>BULOVA</title>
     <meta charset="utf-8">
     <meta name="description" content="BULOVA">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="./styles.css" rel="stylesheet" />
 </head>
 
@@ -17,35 +14,21 @@
     <model-viewer src="./Bulova Rubaiyat 150 (Final).glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls
         tone-mapping="neutral" poster="./poster.webp" shadow-intensity="1.05" autoplay exposure="1.2"
         shadow-softness="1">
-
         <div class="progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
         </div>
-
         <button slot="ar-button" id="ar-button">
-            View in your space33
+            View in your space
         </button>
-
         <div id="ar-prompt">
             <img src="./ar_hand_prompt.png">
         </div>
-
-        <!-- ✅ BOTÓN CTA DENTRO DEL MODEL-VIEWER COMO SLOT -->
-        <div slot="hotspot-cta" class="cta-container-slot" id="cta-descubrir-slot">
-            <a href="https://ad.doubleclick.net/ddm/trackclk/N2059970.3670554NTPMEDIAMX/B34227744.430723328;dc_trk_aid=623932999;dc_trk_cid=242573645;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
-                target="_blank" rel="noopener" class="cta-button-descubrir-slot" id="descubrir-mas-btn-slot">
-                <span class="button-text">Descubrir más</span>
-                <span class="button-arrow">→</span>
-                <span class="button-shine"></span>
-            </a>
-        </div>
-
     </model-viewer>
 
     <!-- ✅ CTA Button Premium con tracking de DoubleClick -->
-    <div class="cta-container" id="cta-descubrir">
+    <div class="cta-container">
         <a href="https://ad.doubleclick.net/ddm/trackclk/N2059970.3670554NTPMEDIAMX/B34227744.430723328;dc_trk_aid=623932999;dc_trk_cid=242573645;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
-            target="_blank" rel="noopener" class="cta-button-descubrir" id="descubrir-mas-btn">
+            target="_blank" rel="noopener" class="cta-button-descubrir">
             <span class="button-text">Descubrir más</span>
             <span class="button-arrow">→</span>
             <span class="button-shine"></span>
@@ -56,10 +39,10 @@
         /* Container del botón - No interfiere con el model-viewer */
         .cta-container {
             position: fixed;
-            bottom: 80px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 9999;
+            z-index: 2000;
             pointer-events: none;
         }
 
@@ -125,7 +108,6 @@
                     rgba(212, 175, 55, 0.3));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -191,7 +173,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive parsddsa tablets */
+        /* Responsive para tablets */
         @media (max-width: 768px) {
             .cta-container {
                 bottom: 30px;
@@ -210,25 +192,34 @@
 
         /* Responsive para móviles */
         @media (max-width: 480px) {
-
-            /* OCULTAR BOTÓN EXTERNO EN MÓVILES - USAR SOLO EL DEL SLOT */
             .cta-container {
-                display: none !important;
+                bottom: 25px;
+                left: 20px;
+                right: 20px;
+                transform: none;
+            }
+
+            .cta-button-descubrir {
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                display: flex;
+                padding: 15px 36px;
+                font-size: 15px;
+                letter-spacing: 0.8px;
             }
         }
 
         /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 360px) {
-
-            /* USAR SOLO BOTÓN DEL SLOT EN PANTALLAS PEQUEÑAS */
-            .cta-container {
-                display: none !important;
+            .cta-button-descubrir {
+                padding: 14px 32px;
+                font-size: 14px;
+                gap: 8px;
             }
 
-            .cta-button-descubrir-slot {
-                padding: 14px 32px !important;
-                font-size: 14px !important;
-                gap: 8px !important;
+            .button-arrow {
+                font-size: 16px;
             }
         }
 
@@ -302,124 +293,6 @@
     </style>
 
     <script src="./script.js"></script>
-
-    <!-- Script adicional para asegurar visibilidad del botón CTA -->
-    <script>
-        // Detectar iOS
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        }
-
-        // Función para forzar visibilidad del botón
-        function forceButtonVisibility() {
-            const ctaContainer = document.getElementById('cta-descubrir');
-            const ctaButton = document.getElementById('descubrir-mas-btn');
-            const ctaContainerSlot = document.getElementById('cta-descubrir-slot');
-            const ctaButtonSlot = document.getElementById('descubrir-mas-btn-slot');
-
-            // Botón original fuera del model-viewer
-            if (ctaContainer) {
-                ctaContainer.style.cssText = `
-                    position: fixed !important;
-                    display: block !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    z-index: 999999 !important;
-                    bottom: 30px !important;
-                    left: 50% !important;
-                    transform: translateX(-50%) translateZ(0) !important;
-                    -webkit-transform: translateX(-50%) translateZ(0) !important;
-                    pointer-events: none !important;
-                    width: auto !important;
-                    height: auto !important;
-                `;
-            }
-
-            if (ctaButton) {
-                ctaButton.style.cssText = `
-                    display: inline-flex !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    pointer-events: auto !important;
-                    position: relative !important;
-                    z-index: 999999 !important;
-                    -webkit-transform: translateZ(0) !important;
-                    transform: translateZ(0) !important;
-                `;
-            }
-
-            // Botón dentro del model-viewer slot (PRIORITARIO PARA iOS)
-            if (ctaContainerSlot) {
-                ctaContainerSlot.style.cssText = `
-                    position: absolute !important;
-                    display: block !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    z-index: 999999 !important;
-                    bottom: 10px !important;
-                    left: 50% !important;
-                    transform: translateX(-50%) translateZ(0) !important;
-                    -webkit-transform: translateX(-50%) translateZ(0) !important;
-                    pointer-events: none !important;
-                    width: auto !important;
-                    height: auto !important;
-                `;
-            }
-
-            if (ctaButtonSlot) {
-                ctaButtonSlot.style.cssText = `
-                    display: inline-flex !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    pointer-events: auto !important;
-                    position: relative !important;
-                    z-index: 999999 !important;
-                    -webkit-transform: translateZ(0) !important;
-                    transform: translateZ(0) !important;
-                    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%) !important;
-                    color: #ffffff !important;
-                    text-decoration: none !important;
-                    padding: 18px 48px !important;
-                    border-radius: 60px !important;
-                    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-                    font-size: 17px !important;
-                    font-weight: 500 !important;
-                    letter-spacing: 1px !important;
-                    text-transform: uppercase !important;
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-                `;
-            }
-
-            console.log('✅ Botón CTA forzado a ser visible - iOS:', isIOS(), '- Slot encontrado:', !!ctaButtonSlot);
-        }
-
-        // Forzar visibilidad inmediatamente
-        forceButtonVisibility();
-
-        // Forzar visibilidad cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', forceButtonVisibility);
-
-        // Verificación adicional después de que todo se cargue
-        window.addEventListener('load', function () {
-            setTimeout(forceButtonVisibility, 100);
-            setTimeout(forceButtonVisibility, 500);
-            setTimeout(forceButtonVisibility, 1000);
-            setTimeout(forceButtonVisibility, 2000);
-        });
-
-        // Para iOS, verificación adicional cada 2 segundos durante los primeros 10 segundos
-        if (isIOS()) {
-            let checks = 0;
-            const iosInterval = setInterval(function () {
-                forceButtonVisibility();
-                checks++;
-                if (checks >= 5) { // 5 checks = 10 segundos
-                    clearInterval(iosInterval);
-                }
-            }, 2000);
-        }
-    </script>
-
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
