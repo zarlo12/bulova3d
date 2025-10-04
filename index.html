@@ -36,10 +36,19 @@
     </div>
 
     <style>
+        /* Estilos para el botón AR - mayor z-index para que aparezca encima */
+        #ar-button {
+            z-index: 3000 !important;
+        }
+
+        #ar-prompt {
+            z-index: 3000 !important;
+        }
+
         /* Container del botón - No interfiere con el model-viewer */
         .cta-container {
             position: fixed;
-            bottom: 80px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2000;
@@ -176,7 +185,7 @@
         /* Responsive para tablets */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 70px;
+                bottom: 20px;
             }
 
             .cta-button-descubrir {
@@ -193,7 +202,7 @@
         /* Responsive para móviles */
         @media (max-width: 480px) {
             .cta-container {
-                bottom: 60px;
+                bottom: 20px;
                 left: 20px;
                 right: 20px;
                 transform: none;
