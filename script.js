@@ -13,33 +13,33 @@ const onProgress = (event) => {
 document.querySelector("model-viewer").addEventListener("progress", onProgress);
 
 // Vercel Analytics - Track custom events
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Track CTA button clicks
-  const ctaButton = document.querySelector('.cta-button-descubrir');
+  const ctaButton = document.querySelector(".cta-button-descubrir");
   if (ctaButton) {
-    ctaButton.addEventListener('click', function() {
+    ctaButton.addEventListener("click", function () {
       if (window.va) {
-        window.va('track', 'CTA Button Click', { button: 'Descubrir más' });
+        window.va("track", "CTA Button Click", { button: "Descubrir más" });
       }
     });
   }
 
   // Track AR button clicks
-  const arButton = document.querySelector('#ar-button');
+  const arButton = document.querySelector("#ar-button");
   if (arButton) {
-    arButton.addEventListener('click', function() {
+    arButton.addEventListener("click", function () {
       if (window.va) {
-        window.va('track', 'AR Button Click', { button: 'View in your space' });
+        window.va("track", "AR Button Click", { button: "View in your space" });
       }
     });
   }
 
   // Track model viewer interactions
-  const modelViewer = document.querySelector('model-viewer');
+  const modelViewer = document.querySelector("model-viewer");
   if (modelViewer) {
-    modelViewer.addEventListener('camera-change', function() {
+    modelViewer.addEventListener("camera-change", function () {
       if (window.va) {
-        window.va('track', 'Model Interaction', { action: 'camera-change' });
+        window.va("track", "Model Interaction", { action: "camera-change" });
       }
     });
   }
